@@ -7,12 +7,16 @@ name = "beamforge-opa"
 version = "0.1.0"
 description = "An OpenEnv implementation for Reinforcement Learning in Optical Phased Arrays."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
     "fastapi",
     "uvicorn",
     "numpy",
     "httpx",
     "openai",
-    "pydantic"
+    "pydantic",
+    "openenv-core>=0.2.0"
 ]
+
+[project.scripts]
+openenv-server = "server.app:main"
