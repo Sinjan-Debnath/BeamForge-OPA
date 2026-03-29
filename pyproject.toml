@@ -19,4 +19,4 @@ dependencies = [
 ]
 
 [project.scripts]
-openenv-server = "server.app:main"
+server = "server.app:main"
