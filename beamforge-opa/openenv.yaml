@@ -1,0 +1,11 @@
+name: "beamforge-opa"
+version: "1.0.0"
+description: "Optical Phased Array Beam Steerer - Optimize phase shifts to maximize SNR."
+entrypoint: "server.app:app"
+tasks:
+  - id: "easy"
+    description: "Steer the beam to a fixed static target."
+  - id: "medium"
+    description: "Steer the beam to a target while nulling a static jammer."
+  - id: "hard"
+    description: "Track a target using multipath reflection."
