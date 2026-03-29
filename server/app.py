@@ -3,6 +3,7 @@ from models import Action, Observation, State
 from server.environment import BeamForgeEnv
 from pydantic import BaseModel
 from typing import Optional
+import uvicorn
 
 app = FastAPI(title="BeamForge OPA Environment")
 env = BeamForgeEnv()
@@ -27,3 +28,10 @@ def get_state():
     # Helper to calculate a rough state without stepping
     _, state = env.step(Action(phases=list(env.current_phases)))
     return state
+
+def main():
+    # This allows OpenEnv to boot your server programmatically
+    uvicorn.run("server.app:app", host="0.0.0.0", port=7860, reload=False)
+
+if __name__ == "__main__":
+    main()
