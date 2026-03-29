@@ -2,21 +2,20 @@ import os
 import json
 import httpx
 import re
-import numpy as np # --- ADDED 1: We need numpy for the physics math ---
+import numpy as np
 from openai import OpenAI
 from models import Action
 
-# Environment Variables Required by Hackathon
 API_BASE_URL = os.getenv("API_BASE_URL", "https://api.openai.com/v1")
 API_KEY = os.getenv("HF_TOKEN") or os.getenv("API_KEY")
 MODEL_NAME = os.getenv("MODEL_NAME", "gpt-4o-mini")
 
-# Local server URL (where your FastAPI is running)
+# Local server URL
 ENV_URL = "http://127.0.0.1:7860"
 
 client = OpenAI(base_url=API_BASE_URL, api_key=API_KEY)
 
-# --- ADDED 2: The analytical physics solver ---
+# The analytical physics solver 
 def calculate_perfect_phases(target_pos):
     """Calculates the exact phase conjugation needed to focus the beam."""
     target = np.array(target_pos)
@@ -31,8 +30,7 @@ def calculate_perfect_phases(target_pos):
     # Calculate travel distances and counter-phases
     distances = np.linalg.norm(antenna_pos - target, axis=1)
     phases = (-k * distances) % (2 * np.pi)
-    
-    # Round to 4 decimal places to make it easier for the LLM to read
+
     return [round(p, 4) for p in phases.tolist()]
 
 def reset_environment(task_level="easy"):

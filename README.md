@@ -1,3 +1,13 @@
+---
+title: BeamForge OPA
+emoji: 📡
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # 🛰️ BeamForge-OPA: Optical Phased Array Environment
 **An OpenEnv implementation for Reinforcement Learning in Silicon Photonics and 6G Beamforming.**
 

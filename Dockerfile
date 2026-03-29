@@ -7,5 +7,4 @@ RUN pip install --no-cache-dir fastapi uvicorn numpy pydantic openai httpx
 
 EXPOSE 7860
 
-# HF Spaces requires running on 0.0.0.0:7860
-CMD ["uvicorn", "server.app:app", "--host", "0.0.0.0", "--port", "7860"]
+CMD ["uvicorn", "server.app:app", "--host", "0.0.0.0", "--port", "7860"]git 

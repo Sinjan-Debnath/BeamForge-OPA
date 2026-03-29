@@ -14,5 +14,5 @@ class Observation(BaseModel):
 
 class State(BaseModel):
     is_done: bool
-    score: float                 # 0.0 to 1.0 grader
+    score: float                
     message: str
