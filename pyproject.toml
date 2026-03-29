@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "beamforge-opa"
+version = "0.1.0"
+description = "An OpenEnv implementation for Reinforcement Learning in Optical Phased Arrays."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "numpy",
+    "httpx",
+    "openai",
+    "pydantic"
+]
