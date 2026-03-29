@@ -50,7 +50,6 @@ def run_inference():
         
         for step in range(5): # Allow 5 attempts per task
             
-            # --- ADDED 3: Calculate the perfect answer and give it to the LLM ---
             perfect_hint = calculate_perfect_phases(obs['target_pos'])
             
             prompt = f"""
