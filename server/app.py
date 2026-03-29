@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from models import Action, Observation, State
 from server.environment import BeamForgeEnv
 from pydantic import BaseModel
+from typing import Optional
 
 app = FastAPI(title="BeamForge OPA Environment")
 env = BeamForgeEnv()
@@ -10,7 +11,10 @@ class ResetRequest(BaseModel):
     task_level: str = "easy"
 
 @app.post("/reset", response_model=Observation)
-def reset_env(req: ResetRequest):
+def reset_env(req: Optional[ResetRequest] = None):
+    # If the bot sends absolutely no JSON body, instantiate the default request
+    if req is None:
+        req = ResetRequest()
     return env.reset(req.task_level)
 
 @app.post("/step")
