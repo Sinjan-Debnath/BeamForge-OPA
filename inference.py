@@ -39,12 +39,17 @@ def run_inference():
     tasks = ["easy", "medium", "hard"]
     
     for task in tasks:
-        # --- CHECKLIST COMPLIANCE: Must print exact word "START" ---
-        print("START")
+        # 1. Exact START format with flush
+        print(f"[START] task={task}", flush=True)
         
         obs = reset_environment(task)
         
+        # Track final step and score for the END print
+        final_step = 0
+        current_score = 0.0
+        
         for step in range(5): 
+            final_step = step + 1
             perfect_hint = calculate_perfect_phases(obs['target_pos'])
             
             prompt = f"""
@@ -89,15 +94,16 @@ def run_inference():
             
             result = step_environment(phases)
             state = result['state']
+            current_score = state['score']
             
-            # --- CHECKLIST COMPLIANCE: Must print exact word "STEP" ---
-            print("STEP")
+            # 2. Exact STEP format with reward and flush
+            print(f"[STEP] step={final_step} reward={current_score:.4f}", flush=True)
             
             if state['is_done']:
                 break
                 
-        # --- CHECKLIST COMPLIANCE: Must print exact word "END" ---
-        print("END")
+        # 3. Exact END format with task, score, steps, and flush
+        print(f"[END] task={task} score={current_score:.4f} steps={final_step}", flush=True)
 
 if __name__ == "__main__":
     run_inference()
